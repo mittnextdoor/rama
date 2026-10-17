@@ -4,7 +4,7 @@
   "version": "1.0.0",
   "scripts": {
     "studio": "remotion studio src/index.ts",
-    "render:master": "remotion render src/index.ts Master out/rama_master_4m.mp4 --codec h264",
+    "render:master": "remotion render src/index.ts Master out/rama_master_3m.mp4 --codec h264",
     "render:cut": "remotion render src/index.ts Cutdown out/rama_cut_60s.mp4 --codec h264"
   },
   "dependencies": {

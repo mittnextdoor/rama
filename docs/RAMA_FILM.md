@@ -27,7 +27,7 @@ video/rama/                  the Remotion project (src/, scripts/, out/)
 cd video/rama
 node scripts/media.js                 # index the media and copy it into public/ (placeholders for anything missing)
 node scripts/srt.js                   # out/rama_master.srt
-npx remotion render src/index.ts Master out/rama_master_4m.mp4 --codec h264
+npx remotion render src/index.ts Master out/rama_master_3m.mp4 --codec h264
 npx remotion render src/index.ts Cutdown out/rama_cut_60s.mp4 --codec h264
 npx remotion studio src/index.ts      # to scrub and adjust
 ```
