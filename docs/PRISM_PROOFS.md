@@ -59,9 +59,15 @@ before matching and the finding says the file was imported twice; the vendor's n
 tried under the same two-earlier-lines rule. Version 2 on the same 72 inputs: **72 of 72**, 44 changes all cited,
 66 exceptions left for people on purpose.
 
-**What PRISM holds.** Both batches were sent to PRISM on 17 Oct (sessions `eval-baseline-prism-…` and
-`eval-v2-prism-…`, agent `bob-close`), each case as one Agents SDK trace with its steps; a failed case ends with a
-`verify_expected_outcome` step in error and an output that starts `Case …: FAIL`.
+**What PRISM holds** (sent 17 Oct 2026, 16:06–17:25; PRISM's trace count rose from about 1,600 to 5,117):
+
+| Batch | PRISM session | Result |
+|---|---|---|
+| v1 baseline (`BOB_V1=1`) | `eval-baseline-prism-v2-20261017T200635Z` | 59 / 72; 13 failed: duplicate import ×7, vendor description ×6 |
+| v2, same 72 inputs | `eval-v2-prism-v2-20261017T204533Z` | 72 / 72; 44 changes, all cited; 66 exceptions left on purpose |
+
+Each case is one Agents SDK trace with its steps; a failed case ends with a `verify_expected_outcome` step in error and
+an output that starts `Case …: FAIL`.
 
 **On screen:** Root Cause → run it on the baseline session (costs credits) → the cluster of the duplicate-import
 failures and its explanation; then Sessions → the v2 session, same case ids, no failures. Show `bob/eval/CHANGES.md`
