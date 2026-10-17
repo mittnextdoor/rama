@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><title>RAMA · Script for the judges</title>
+<style>
+  @page { size: Letter; margin: 22mm 20mm 20mm 20mm; }
+  body { font-family: Helvetica, Arial, sans-serif; color: #1b2437; font-size: 11.2pt; line-height: 1.45; }
+  h1 { font-size: 22pt; margin: 0 0 2pt; color: #0b1f3a; }
+  .sub { color: #5b6b82; margin-bottom: 14pt; }
+  h2 { font-size: 13.5pt; color: #b45309; margin: 18pt 0 6pt; border-bottom: 1px solid #e5e9f2; padding-bottom: 3pt; }
+  h3 { font-size: 11.5pt; margin: 12pt 0 4pt; }
+  .say { background: #fbf4ea; border-left: 4px solid #d97706; padding: 8pt 11pt; margin: 6pt 0 8pt; font-style: italic; }
+  .show { background: #eef3fb; border-left: 4px solid #1d4ed8; padding: 6pt 11pt; margin: 4pt 0 8pt; font-size: 10.4pt; }
+  .show b { color: #1d4ed8; }
+  table { border-collapse: collapse; width: 100%; margin: 6pt 0 10pt; font-size: 10.2pt; }
+  th, td { border: 1px solid #d6dde8; padding: 5pt 7pt; text-align: left; vertical-align: top; }
+  th { background: #0b1f3a; color: #fff; font-weight: 600; }
+  .time { color: #5b6b82; font-size: 10pt; }
+  .warn { background: #fff4f4; border-left: 4px solid #e31a1a; padding: 6pt 11pt; margin: 6pt 0; font-size: 10.4pt; }
+  .foot { margin-top: 18pt; color: #5b6b82; font-size: 9.5pt; border-top: 1px solid #e5e9f2; padding-top: 6pt; }
+  .pb { page-break-before: always; }
+</style></head><body>
+
+<h1>RAMA · Script for the judges</h1>
+<div class="sub">Money Operations track · MONEY TALKS 2 · 17 October 2026 · about four minutes, then the three PRISM proofs</div>
+
+<div class="show"><b>Have open before you start:</b> RAMA at the Dashboard (reset) · PRISM: Traces filtered to agent <b>rama</b>, the Alerts page, Root Cause · the public repo github.com/mittnextdoor/rama · the film as a backup if anything stalls.</div>
+
+<h2>1. The problem <span class="time">(30 s)</span></h2>
+<div class="say">"Private credit is financing the AI build-out, and defaults just hit a record. A fund CFO closes each borrower's month in spreadsheets, and the LP sees its risk a quarter late. The numbers that would warn them sit in the books, disconnected from what the market is saying. RAMA connects the two: an agentic close of the borrower's books, verified figure by figure, feeding fixed risk rules, with a person approving what the LP sees."</div>
+
+<h2>2. The close <span class="time">(60 s)</span></h2>
+<div class="show"><b>Show:</b> Close → Run the close. Point to the two blockers. Click <b>Accept correction</b> on the interest split; click <b>Leave open</b> on the fee. Click the Operating Account workpaper to show the bank line highlighted.</div>
+<div class="say">"Helios Compute is a synthetic GPU-cloud borrower; CoreWeave is only its public proxy for market data. RAMA's agents read the ledger, the bank statements and the lender's statements and tie every account. They record what the evidence supports on their own: this power payment, cited to the bank line and three earlier ledger entries. Two things they will not do alone. The ledger says September's interest was paid in cash, five point seven five million; the bank shows a four million wire. The agent found the borrower's PIK election notice: one point seven five million was paid in kind and added to the loan. It proposes the split with its citations, and a person accepts it. And this fourteen-thousand-eight-hundred-dollar fee has no support, so it stays an exception in plain sight. RAMA never forces the books to balance. Every number carries its evidence: click it and you are looking at the bank line."</div>
+
+<h2>3. The intelligence <span class="time">(50 s)</span></h2>
+<div class="show"><b>Show:</b> Intelligence → Build indicators. Click <b>Refinancing wall</b> (the timeline), then <b>Income quality</b> (the gauge), drag a what-if slider once. Hover a "not evaluated" tile.</div>
+<div class="say">"Only verified figures go forward; anything the close could not tie is held back. They meet the S&amp;P Capital IQ snapshot: twelve companies, ratings, leverage, coverage, as of October sixteenth. Fourteen fixed rules do the math; no model arithmetic. Each threshold comes from the LP's own policy, the loan documents or a labelled default. Ten rules fired. Four say 'not evaluated' because the data was not pulled: a missing input is logged, never estimated. The sliders are scenarios, labelled as such, never rule outputs."</div>
+
+<h2>4. Cards, guardrails, release <span class="time">(60 s)</span></h2>
+<div class="show"><b>Show:</b> Review → Explain on one card (facts, threshold, sources, checks). Guardrail test → Run test → blocked. Approve three cards, reject one with "Hold, confirm with deal team", <b>Approve package &amp; release</b>. Chronograph → the notes landed; the held one absent; the banner.</div>
+<div class="say">"The model's only job is to put a rule's result into words. Every card passes two guardrails before anyone sees it: every number must be a rule output, and no advice, a blocklist plus a classifier. Watch the test: 'Should Hudson sell its stake?' Blocked, and the reason is recorded. Nothing reaches the LP until a person approves it. Approve the package and only those cards travel; the card we held stays behind. This destination is a demonstration; there is no live connection."</div>
+
+<h2 class="pb">5. The three PRISM proofs <span class="time">(90 s)</span></h2>
+
+<h3>Proof 1 · Sessions: one run, every tool call</h3>
+<div class="show"><b>Show:</b> PRISM → Traces → agent <b>rama</b> → open the intelligence run → the Steps list.</div>
+<div class="say">"Every agent is traced through PRISM's Agent Frameworks integration, the OpenAI Agents SDK. The close engine's own steps are mirrored as spans, so PRISM sees the whole month, not just the model calls. This run has twenty steps: read the closed books, load the snapshot, build the fund view, fourteen rule steps by name, then the card writers with their tool calls and guardrails. The model column reads 'anthropic claude haiku' through Nicrron: one route for every call, no silent fallback."</div>
+
+<h3>Proof 2 · The alert</h3>
+<div class="show"><b>Show:</b> PRISM → Alerts → the rule on <b>rama</b>, latency above 1000 ms → the fired alert → open its trace.</div>
+<div class="say">"The alert that matters to this workflow is a stalled model call: the card writer waits on the model, and a stalled call holds the month. The rule is latency above one second on the rama agent. It fired on a real run: a card-writer generation. And something we found on the way: PRISM's SDK processor was reporting every span as zero milliseconds, because it expected numeric timestamps. Until we fixed that in our tracer, this alert could never fire. That is the point of observability: the first thing it caught was in the plumbing."</div>
+
+<h3>Proof 3 · Root Cause: the failure, the fix, v2</h3>
+<div class="show"><b>Show:</b> PRISM → Root Cause on the baseline session → the cluster. Then Sessions → the v2 session, same case ids, no failures. Have <b>bob/eval/CHANGES.md</b> open beside it.</div>
+<div class="say">"Our close engine has a seventy-two-case synthetic evaluation; each case writes its expected outcome before the engine looks, and the verifier checks correctness, never HTTP success. Version one passed fifty-nine of seventy-two. The failures clustered. Seven runs: a bank statement imported twice. The engine noticed the file no longer footed, and still recorded the second copy as a missing line, creating a difference it then flagged. A forbidden write. Six runs: a known vendor described differently, left for a person. The fix: set the duplicate copy aside before matching, and try the vendor's name without the month's extra words. Version two, same seventy-two inputs: seventy-two of seventy-two, every change cited. The failure, the fix, and the alert that would have caught it."</div>
+
+<h2>6. Close <span class="time">(20 s)</span></h2>
+<div class="say">"Every number comes from tested code. Every insight is descriptive and measured against the LP's own rules. Every step is in PRISM. From reconciled books to reviewed intelligence: RAMA makes the path visible."</div>
+
+<h2>If a judge asks</h2>
+<table>
+<tr><th style="width:34%">Question</th><th>Answer</th></tr>
+<tr><td>"Is this investment advice?"</td><td>"No. It describes exposure against the LP's own thresholds. Recommendations are blocked by a blocklist and a classifier before anyone sees them; you watched one get blocked. 'What should I do?' gets a fixed hand-off to the LP's advisers."</td></tr>
+<tr><td>"Where does the data come from?"</td><td>"Synthetic borrower, fund and LP. Real S&amp;P Capital IQ Pro screen of twelve public companies, under our own licence, shown as derived signals. Two cited public facts labelled non-S&amp;P. No real company's accounting."</td></tr>
+<tr><td>"Does the model ever compute a number?"</td><td>"No. Rules compute; the card writer may only use the rule's figures, and a guardrail rejects any number that isn't one of them."</td></tr>
+<tr><td>"Is Chronograph connected?"</td><td>"No. It's a demonstration destination, labelled on screen. The integration is the roadmap."</td></tr>
+<tr><td>"Is the 72-case result the intelligence layer's accuracy?"</td><td>"No. It's the close engine's evaluation. The intelligence layer doesn't have its own before/after yet; that's next."</td></tr>
+<tr><td>"What if Nicrron is down?"</td><td>"The run stops visibly and PRISM shows the failed call. There is no fallback to another provider by design."</td></tr>
+</table>
+
+<div class="warn"><b>Say only what ran.</b> Proofs 1 and 2 are live in the dashboard. Proof 3's two batches were sent to PRISM on 17 October; run Root Cause yourself before presenting, and if PRISM clusters on something other than the FAIL outputs, say so and show the local results, which are the same data.</div>
+
+<div class="foot">RAMA provides risk analytics, not investment advice. All fund, borrower and investor data is synthetic. Public repo: github.com/mittnextdoor/rama</div>
+</body></html>
