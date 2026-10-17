@@ -30,8 +30,10 @@ def run_case(case, batch_id, *, ask_model=True, keep=False):
     try:
         task = (f"Close {inputs['period']} for case {case['id']} (plants: {', '.join(case['plants'])}): tie the bank and card statements to "
                 "QuickBooks, fix what can be cited, build the workpapers, leave the rest for a person.")
-        with BT.run(kind="eval", task=task, session_id=batch_id, fixture={"id": fixtures.FIXTURE_ID, "version": fixtures.FIXTURE_VERSION, "case": case["id"]},
-                    meta={"case_id": case["id"], "plants": case["plants"], "batch": batch_id}) as r:
+        from rama import tracing as RT
+        with RT.sdk_trace(f"Bob eval {case['id']}", batch_id, {"case": case["id"], "agent_id": "bob-close", "version": VERSION}), \
+             BT.run(kind="eval", task=task, session_id=batch_id, fixture={"id": fixtures.FIXTURE_ID, "version": fixtures.FIXTURE_VERSION, "case": case["id"]},
+                    meta={"case_id": case["id"], "plants": case["plants"], "batch": batch_id}, agent_id="bob-close", agent_name="Bob close") as r:
             t0 = time.monotonic()
             result = engine.close_month(ad, scope, inputs, ask_model=ask_model)
             with BT.step("verify_expected_outcome", "tool", {"case": case["id"], "checked": ["findings", "writes", "ties", "open exceptions", "invariants"]}) as st:

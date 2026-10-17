@@ -38,7 +38,22 @@ def install():
             set_trace_processors([])
             return False, "PRISMTRACE_API_KEY / PRISMTRACE_PROJECT_ID not set: runs are kept locally only"
         from prismtrace import PRISMtraceTracingProcessor
-        _processor = _Queued(PRISMtraceTracingProcessor(api_key=key, project_id=project, agent_name="rama"))
+
+        class _Timed(PRISMtraceTracingProcessor):
+            """PRISM's processor reads span.started_at/ended_at as numbers; the Agents SDK gives ISO strings, so every
+            trace arrived with latency 0 ms. Parsed here so latency alerts can fire on real durations."""
+            @staticmethod
+            def _duration_ms(span):
+                from datetime import datetime
+                try:
+                    a, b = getattr(span, "started_at", None), getattr(span, "ended_at", None)
+                    if isinstance(a, str) and isinstance(b, str):
+                        return max(0, int((datetime.fromisoformat(b.replace("Z", "+00:00")) - datetime.fromisoformat(a.replace("Z", "+00:00"))).total_seconds() * 1000))
+                except (ValueError, TypeError):
+                    pass
+                return PRISMtraceTracingProcessor._duration_ms(span)
+
+        _processor = _Queued(_Timed(api_key=key, project_id=project, agent_name="rama"))
         set_trace_processors([_processor])
         BT.set_mirror(_Mirror())
         return True, "installed"
@@ -137,6 +152,17 @@ def session(session_id, workflow, *, agent_id, kind, task, meta=None):
 
 def step(name, kind="tool", input=None):
     return BT.step(name, kind, input)
+
+
+@contextlib.contextmanager
+def sdk_trace(workflow, session_id, meta=None):
+    """An Agents SDK trace inside PRISM's session, for code that opens its own bob.trace run (Bob's evaluation)."""
+    install()
+    import prismtrace
+    from agents import trace as agents_trace
+    with prismtrace.session(session_id):
+        with agents_trace(workflow, group_id=session_id, metadata=meta or {}):
+            yield
 
 
 def doctor():
