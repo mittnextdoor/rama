@@ -192,7 +192,7 @@ export const Guardrail: React.FC<SceneProps> = (props) => {
 
 // 10 — Approval release
 export const Release: React.FC<SceneProps> = (props) => {
-  const a = props.cut ? 75 : 270, f = props.cut ? 75 : 180;      // approval (before the in-app line fires), the fiery line, the destination
+  const L = useLen(), a = Math.round(L * 0.45), f = Math.round(L * 0.25);   // approval (before the in-app line fires), the fiery line, the destination
   return (
     <Wrap scene={10} {...props}>
       <Sequence from={0} durationInFrames={a}><Capture src={cap("CAPTURE_10a")} id="CAPTURE_10a" from={props.cut ? 150 : 0} /><Chip x={1200} y={120} at={Math.round(a * 0.6)} tone="amber" small>Held — confirm with deal team · stays behind</Chip></Sequence>
