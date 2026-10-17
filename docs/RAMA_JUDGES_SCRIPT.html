@@ -24,8 +24,35 @@
 
 <div class="show"><b>Have open before you start:</b> RAMA at the Dashboard (reset) · PRISM: Traces filtered to agent <b>rama</b>, the Alerts page, Root Cause · the public repo github.com/mittnextdoor/rama · the film as a backup if anything stalls.</div>
 
+<h2>By the numbers</h2>
+<h3>How big the problem is</h3>
+<table>
+<tr><th style="width:46%">Fact</th><th>Number</th><th>Source</th></tr>
+<tr><td>Private credit assets under management</td><td><b>$1.7–2 trillion</b> (narrow measure); $3.5 trillion on the broad measure</td><td>Preqin 2026; Moody's; Alternative Credit Council</td></tr>
+<tr><td>U.S. private credit default rate, trailing 12 months</td><td><b>6.0%</b> to April 2026, a record; 6.1% to July 2026</td><td>Fitch Ratings</td></tr>
+<tr><td>What drove those defaults</td><td><b>More than half</b> were interest deferrals and payment-in-kind (PIK)</td><td>Fitch Ratings</td></tr>
+<tr><td>Smaller borrowers (EBITDA ≤ $25M) defaulting</td><td><b>12.3%</b>, about three times the next size band</td><td>Fitch Ratings, July 2026</td></tr>
+<tr><td>Hyperscaler capital spending, 2026</td><td><b>$751 billion</b>, +83% on 2025, increasingly debt-funded</td><td>Goldman Sachs estimate (Oct 2026)</td></tr>
+<tr><td>When an LP sees the quarter's numbers</td><td><b>60–90 days</b> after quarter end under most LPAs; 45 days at best</td><td>Industry practice; the SEC's vacated 45/90-day rule</td></tr>
+</table>
+<div class="say">"Two trillion dollars of private credit, defaulting at a record six percent, more than half of it through PIK, the exact thing hidden in a borrower's books. And the LP finds out sixty to ninety days after the quarter."</div>
+
+<h3>What RAMA does about it (measured on the demo run, 17 October 2026)</h3>
+<table>
+<tr><th style="width:46%">Step</th><th>Measured</th></tr>
+<tr><td>The borrower's month closed by agents</td><td><b>16 steps, 12 tool calls, 3 model calls</b>; 11 source files; 2 bank and 2 lender statements tied; 8 workpapers; under 2 seconds with the model's classification</td></tr>
+<tr><td>Changes the agents made on their own</td><td><b>1</b>, with <b>4 citations</b> (the bank line and three ledger entries); <b>0 uncited writes</b></td></tr>
+<tr><td>Decisions left to a person</td><td><b>2 clicks</b>: accept the PIK split ($1.75M, cited to the election notice), leave the unsupported $14,800 open</td></tr>
+<tr><td>Leading indicators</td><td><b>14 rules in 5 seconds</b>: 10 fired, 4 not evaluated, <b>0 estimated</b></td></tr>
+<tr><td>Risk cards</td><td><b>10 written, 10 passed both guardrails</b>; 0 numbers outside the rules' outputs; 1 advisory test sentence <b>blocked</b></td></tr>
+<tr><td>Human release</td><td>1 package approval; 1 card held back and <b>not</b> released</td></tr>
+<tr><td>Model route and tracing</td><td><b>23 model calls, 68,273 tokens, all through Nicrron</b>; <b>2,289 traces</b> in PRISM, one session per month</td></tr>
+<tr><td>Close-engine evaluation (Bob)</td><td><b>72 cases, 40 planted faults</b>; v1 <b>59/72</b> → v2 <b>72/72</b>; 13 failures to 0 from <b>2 root causes</b>; 0.58 s per case</td></tr>
+</table>
+<div class="say">"On the demo run the agents closed the month in sixteen traced steps, made one change with four citations and none without, and left a person two clicks. Fourteen rules ran in five seconds; four said 'not evaluated' rather than guess. Ten cards, ten passed both guardrails. And on seventy-two test months, thirteen failures became zero from two root causes."</div>
+
 <h2>1. The problem <span class="time">(30 s)</span></h2>
-<div class="say">"Private credit is financing the AI build-out, and defaults just hit a record. A fund CFO closes each borrower's month in spreadsheets, and the LP sees its risk a quarter late. The numbers that would warn them sit in the books, disconnected from what the market is saying. RAMA connects the two: an agentic close of the borrower's books, verified figure by figure, feeding fixed risk rules, with a person approving what the LP sees."</div>
+<div class="say">"Two trillion dollars of private credit is financing the AI build-out, and defaults just hit a record six percent, more than half of them through PIK. A fund CFO closes each borrower's month in spreadsheets, and the LP sees its risk sixty to ninety days later. The numbers that would warn them sit in the books, disconnected from what the market is saying. RAMA connects the two: an agentic close of the borrower's books, verified figure by figure, feeding fixed risk rules, with a person approving what the LP sees."</div>
 
 <h2>2. The close <span class="time">(60 s)</span></h2>
 <div class="show"><b>Show:</b> Close → Run the close. Point to the two blockers. Click <b>Accept correction</b> on the interest split; click <b>Leave open</b> on the fee. Click the Operating Account workpaper to show the bank line highlighted.</div>
