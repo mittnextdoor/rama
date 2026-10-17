@@ -1,0 +1,157 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><title>RAMA · Go-to-market plan</title>
+<style>
+  @page { size: Letter; margin: 22mm 20mm 20mm 20mm; }
+  body { font-family: Helvetica, Arial, sans-serif; color: #1b2437; font-size: 10.8pt; line-height: 1.45; }
+  h1 { font-size: 22pt; margin: 0 0 2pt; color: #0b1f3a; }
+  .sub { color: #5b6b82; margin-bottom: 12pt; }
+  h2 { font-size: 13.5pt; color: #b45309; margin: 18pt 0 6pt; border-bottom: 1px solid #e5e9f2; padding-bottom: 3pt; }
+  h3 { font-size: 11.3pt; margin: 12pt 0 4pt; color: #0b1f3a; }
+  p { margin: 4pt 0 7pt; }
+  ul { margin: 2pt 0 8pt 18pt; padding: 0; } li { margin: 2pt 0; }
+  table { border-collapse: collapse; width: 100%; margin: 6pt 0 10pt; font-size: 9.9pt; }
+  th, td { border: 1px solid #d6dde8; padding: 5pt 7pt; text-align: left; vertical-align: top; }
+  th { background: #0b1f3a; color: #fff; font-weight: 600; }
+  .box { background: #eef3fb; border-left: 4px solid #1d4ed8; padding: 7pt 11pt; margin: 6pt 0 10pt; }
+  .warn { background: #fff4f4; border-left: 4px solid #e31a1a; padding: 7pt 11pt; margin: 6pt 0 10pt; }
+  .gate { background: #fbf4ea; border-left: 4px solid #d97706; padding: 7pt 11pt; margin: 6pt 0 10pt; }
+  .foot { margin-top: 18pt; color: #5b6b82; font-size: 9pt; border-top: 1px solid #e5e9f2; padding-top: 6pt; }
+  .pb { page-break-before: always; }
+  .small { font-size: 9.4pt; color: #5b6b82; }
+</style></head><body>
+
+<h1>RAMA · Go-to-market plan</h1>
+<div class="sub">Middle-market fund GPs · freemium agent inside the portfolio-management platforms they already use · subscription once traction gates are met · 17 October 2026</div>
+
+<div class="box"><b>In one paragraph.</b> RAMA enters the middle market as a free agent that plugs into the portfolio-monitoring platform a GP already runs (Chronograph, iLEVEL, Allvue, Cobalt, Dynamo, eFront) and the accounting exports its portfolio companies already produce. The free tier closes one fund's portfolio companies every month, verifies every figure against its source, and writes guarded risk cards into the GP's own platform. Every run is traced, so usage and usability are measured, not guessed. The product iterates on that evidence. When five pre-set traction gates are met, the paid tiers switch on: a monthly or annual subscription priced per portfolio company under coverage, sold to the fund CFO, with investor relations as the second buyer. Revenue is not the goal of the free period; a product that GPs keep using is.</div>
+
+<h2>1. Who we sell to, and why the middle market</h2>
+<p><b>The buyer:</b> the fund CFO or controller of a middle-market private credit or private equity GP, roughly $300M to $3B under management, running two to six funds, with 10 to 60 portfolio companies or borrowers, and either an in-house close or a thin fund administrator. <b>The daily user:</b> the fund accountant or analyst who runs the monthly close and the portfolio-monitoring platform. <b>The second buyer (paid tier):</b> investor relations, who answer the LP's questions.</p>
+<p><b>Why this segment first.</b> Large managers (eFront, iLEVEL enterprise) buy on multi-year procurement cycles with vendor-security reviews we can't yet pass; emerging managers under $300M have one accountant and little budget. The middle market has the pain (a real close, real LPs asking real questions) and buys fast, and it already pays for a monitoring platform, so our agent arrives as an addition, not a replacement. There is no public count of middle-market GPs; sizing comes from the SEC's Form ADV filings and PitchBook's firm data, which we pull in the first week (section 9).</p>
+<p><b>The problem, quantified</b> (sources in the judges' script): $1.7–2 trillion of private credit; a record 6.0% U.S. default rate, more than half through interest deferrals and PIK; LPs seeing the quarter 60–90 days after it ends. The number that warns an LP sits in a borrower's books, and nobody connects it to the market in time.</p>
+
+<h2>2. What the free product is, exactly</h2>
+<table>
+<tr><th style="width:24%">Dimension</th><th style="width:38%">Free tier ("RAMA Monitor")</th><th>What it costs us / why the limit</th></tr>
+<tr><td>Funds</td><td>1 fund</td><td>Keeps setup to one LPA, one chart, one set of thresholds</td></tr>
+<tr><td>Portfolio companies / borrowers</td><td>Up to 10 under coverage</td><td>Model cost is per close; 10 closes a month is a few dollars of Nicrron spend per GP</td></tr>
+<tr><td>Close</td><td>Monthly, from GL/trial-balance exports and bank and lender statements (CSV, Excel, PDF); the agents fix only what they can cite; exceptions stay visible</td><td>The whole engine; no feature held back here, because the close is the product's proof</td></tr>
+<tr><td>Indicators</td><td>All 14 rules; thresholds from the LP's policy, the loan documents or labelled defaults</td><td>Rules are deterministic code: zero marginal cost</td></tr>
+<tr><td>Market data</td><td>The GP's own Cap IQ / Bloomberg / Preqin export, loaded under its licence; public filings</td><td>We never resell licensed data; this keeps us outside every vendor's AI-processing clause</td></tr>
+<tr><td>Cards and release</td><td>Guarded cards; package or per-card approval; release into the GP's platform</td><td>The guardrails are the brand; never paywalled</td></tr>
+<tr><td>Platform integration</td><td>One platform connector (read KPIs, write risk notes)</td><td>Each connector is a build; the free tier proves which platforms matter</td></tr>
+<tr><td>Users</td><td>3 seats (CFO, accountant, IR)</td><td>Enough to see the whole workflow used</td></tr>
+<tr><td>History</td><td>12 months of closes and cards</td><td>Enough for trend cards; older history is a paid feature</td></tr>
+<tr><td>Observability</td><td>Every run traced (PRISM); the GP sees its own runs</td><td>Our traction data and their audit trail are the same thing</td></tr>
+<tr><td>Support</td><td>Email, 2 business days; onboarding call for design partners</td><td>Design partners get a person; everyone else gets the product</td></tr>
+</table>
+<p><b>What the free tier is not:</b> not a trial that expires, not a crippled demo, not "free until we feel like charging". The limits above are published, and the first paid gate (section 5) is announced before anyone signs up.</p>
+
+<h2>3. Integration: how the agent gets into their platform</h2>
+<p>The agent lives beside the platform, not inside it. It reads what the platform already holds and writes back one thing: approved risk notes with their sources. Three integration paths, in the order we build them:</p>
+<table>
+<tr><th style="width:22%">Path</th><th style="width:40%">How</th><th>Platforms / formats</th></tr>
+<tr><td><b>1. Files in, notes out</b> (day one)</td><td>The GP exports what it already has; RAMA closes the month; approved cards export as the platform's own import format (CSV/XLSX) or as a PDF note per company</td><td>GL exports from QuickBooks, Sage Intacct, NetSuite, Xero; statements as PDF/CSV; every monitoring platform accepts a KPI/notes import</td></tr>
+<tr><td><b>2. Platform read + write</b> (first 90 days)</td><td>A connector reads company KPIs, marks and the LP register from the platform's API and writes risk notes back as the platform's "commentary" or "notes" object, tagged RAMA and dated</td><td>Allvue and iLEVEL expose APIs; Chronograph and Cobalt take structured uploads; Dynamo and eFront through their data services. Order decided by which platforms the first 25 design partners use</td></tr>
+<tr><td><b>3. Accounting read</b> (months 3–9)</td><td>Read-only connectors to the portfolio companies' ledgers so the close runs without exports</td><td>QuickBooks Online, Sage Intacct, NetSuite, Xero; fund ledgers via the administrator (Investran, Geneva) later</td></tr>
+</table>
+<div class="box"><b>The integration promise to the CFO:</b> nothing in your platform changes except a new, dated, sourced note appearing on a company after a person at your firm approved it. RAMA never writes a number into the platform's financials.</div>
+
+<h2>4. What we measure in the free period (traction and usability)</h2>
+<p>Every number below is already emitted by the product (PRISM runs, approval records, the close's own measures). No survey is needed to get them; surveys add the "why".</p>
+<table>
+<tr><th style="width:30%">Metric</th><th style="width:40%">Definition</th><th>Why it matters</th></tr>
+<tr><td>Time to first close</td><td>Sign-up → first month closed with workpapers</td><td>Integration friction; target under 1 business day with files, under 1 hour with a connector</td></tr>
+<tr><td>Monthly active GPs</td><td>GPs that ran at least one close in the calendar month</td><td>The retention number; the product is monthly by nature</td></tr>
+<tr><td>Companies under coverage</td><td>Distinct companies closed in the month, per GP and total</td><td>The pricing unit; growth inside an account</td></tr>
+<tr><td>Human minutes per close</td><td>Timer from "Run the close" to sign-off, minus agent time</td><td>The value claim; compare with the GP's stated baseline (typically hours per company)</td></tr>
+<tr><td>Decisions per close</td><td>Blockers left for a person, per company-month</td><td>Falling over time = the engine learning the client's patterns; rising = a data problem</td></tr>
+<tr><td>Citation rate</td><td>Agent changes with citations ÷ all agent changes</td><td>Must stay at 100%; any drop is a bug, not a metric</td></tr>
+<tr><td>Correction rate</td><td>Agent changes a reviewer marked wrong ÷ all agent changes</td><td>Accuracy as the customer sees it; the single number we publish</td></tr>
+<tr><td>Cards approved / held / rejected</td><td>Per month, per rule</td><td>Which indicators GPs trust; which rules need better thresholds or wording</td></tr>
+<tr><td>Guardrail blocks</td><td>Cards blocked before review, by reason</td><td>Should trend to zero as prompts improve; never hidden</td></tr>
+<tr><td>Notes released to the platform</td><td>Approved cards that reached the GP's platform</td><td>The integration is used, not just connected</td></tr>
+<tr><td>LP questions answered with a card</td><td>IR marks a card "used in an LP reply" (one click)</td><td>The signal that IR is the second buyer</td></tr>
+<tr><td>Rules "not evaluated"</td><td>Per GP, which rules never run for lack of data</td><td>Tells us which connectors and data sources to build next</td></tr>
+</table>
+<p><b>Instrumentation already in place:</b> PRISM sessions per company-month, run records with steps and durations, approval and rejection records with reasons, the close's measures (minutes, changes, corrections, changes after sign-off, unauthorised writes). A weekly traction report is generated from these, reviewed every Monday, and drives the iteration list.</p>
+
+<h2 class="pb">5. The traction gates: when the subscription switches on</h2>
+<div class="gate"><b>The paid tiers launch when all five gates are met, measured over a trailing 60 days.</b> Announced to every free user at sign-up, so the switch is expected, not a surprise.</div>
+<table>
+<tr><th style="width:5%">#</th><th style="width:38%">Gate</th><th style="width:22%">Threshold</th><th>Why this number</th></tr>
+<tr><td>1</td><td>Monthly active GPs</td><td><b>25</b>, of which 15 ran closes in each of the last 3 months</td><td>Enough firms to price against, and proof the product is monthly habit, not a one-off</td></tr>
+<tr><td>2</td><td>Companies under coverage</td><td><b>250</b> company-months in the last 60 days</td><td>The pricing unit at a volume that makes unit costs real</td></tr>
+<tr><td>3</td><td>Correction rate</td><td><b>Under 2%</b> of agent changes marked wrong, with 0 uncited writes</td><td>A CFO will pay for a close they don't have to redo</td></tr>
+<tr><td>4</td><td>Human minutes per close</td><td><b>Under 15 minutes</b> per company-month, median, across active GPs</td><td>The saving must be large and visible before we ask for money</td></tr>
+<tr><td>5</td><td>Platform release</td><td><b>60%</b> of approved cards released into a platform; <b>10 GPs</b> say in writing they would pay</td><td>The integration is the moat; the willingness-to-pay conversations happen before pricing is fixed</td></tr>
+</table>
+<p><b>If a gate isn't met by month 9,</b> we don't launch pricing; we publish what we learned and fix the product. A free tier that nobody uses monthly is a verdict, not a stage.</p>
+
+<h2>6. Pricing when the gates are met</h2>
+<table>
+<tr><th style="width:18%">Tier</th><th style="width:34%">Includes</th><th style="width:24%">Price (proposed)</th><th>Who</th></tr>
+<tr><td><b>Monitor</b> (free, stays free)</td><td>Section 2: 1 fund, 10 companies, 1 connector, 3 seats, 12 months history</td><td>$0</td><td>Emerging managers; the funnel</td></tr>
+<tr><td><b>Close</b></td><td>Unlimited funds; per-company coverage; accounting connectors; 36 months history; priority support; SOC 2 report</td><td><b>$450 per company per month</b>, billed monthly; <b>$4,500 per company per year</b> (two months free) billed annually; minimum 10 companies</td><td>Fund CFO / controller</td></tr>
+<tr><td><b>Close + LP Insight</b></td><td>Close, plus: LP-specific cards against each LP's own policy, IR review queue, scenario views, platform write-back for every LP</td><td>Close price <b>+ $1,500 per fund per month</b>, or + $15,000 per fund per year</td><td>CFO, with IR as the second signature</td></tr>
+<tr><td><b>Administrator</b></td><td>Multi-GP tenancy, white-label notes, API, SLA</td><td>Negotiated; floor $25,000 per year per administrator plus per-company fees</td><td>Fund administrators (section 8)</td></tr>
+</table>
+<p><b>Why per company per month.</b> It is the unit the CFO already thinks in (the close is per company), it grows with the portfolio rather than with seats, and it maps directly to our cost (one close, a few model calls). At 20 companies, Close is $9,000 a month; a single fund accountant costs more. <b>Why the annual option</b>: the close is a monthly habit, so annual billing matches a year of closes and funds our connectors. <b>Price discovery</b>: gate 5 includes ten written willingness-to-pay conversations; the numbers above are the opening position, and the final list price is set from those conversations, not from this document.</p>
+<div class="warn"><b>What is never charged for:</b> citations, guardrails, the audit trail, or the LP's own threshold settings. Charging for the controls would make the free tier unsafe and the paid tier a bribe.</div>
+
+<h2>7. Phases and milestones</h2>
+<table>
+<tr><th style="width:14%">Phase</th><th style="width:30%">What happens</th><th style="width:30%">Exit criterion</th><th>Owner's effort</th></tr>
+<tr><td><b>0 · Now</b> (hackathon → month 1)</td><td>Public repo; demo film; 3 design-partner conversations from the hackathon network; Form ADV / PitchBook sizing of the segment; the file-in/notes-out path hardened</td><td>5 GPs agree to a 90-day design partnership; one real (non-synthetic) company month closed read-only beside the GP's own close</td><td>Founder sells; Claude builds</td></tr>
+<tr><td><b>1 · Design partners</b> (months 1–3)</td><td>5–10 GPs on the free tier with a weekly call; first platform connector chosen by their platforms; SOC 2 Type I started; the first intelligence-layer evaluation (not the close's)</td><td>3 GPs closing every month unprompted; connector live for the most common platform; correction rate measured</td><td>Weekly calls; one engineer-equivalent</td></tr>
+<tr><td><b>2 · Open free tier</b> (months 3–6)</td><td>Self-serve sign-up; the second connector; the administrator channel opened; content from real closes (anonymised)</td><td>25 monthly-active GPs; gates 1–4 trending to threshold</td><td>Founder on channel; support rota</td></tr>
+<tr><td><b>3 · Gates met</b> (months 6–9)</td><td>Pricing conversations (gate 5); SOC 2 Type I report; billing; the Close tier launches to the free base first</td><td>First 10 paying GPs; net revenue retention measured from month 1 of billing</td><td>Founder closes the first ten personally</td></tr>
+<tr><td><b>4 · Insight and administrators</b> (months 9–15)</td><td>LP Insight tier; one administrator partnership; SOC 1 scoped once an auditor relies on the workpapers</td><td>One administrator reselling; LP Insight attached to 30% of Close accounts</td><td>First hires: a solutions engineer and a fund-accounting lead</td></tr>
+</table>
+
+<h2>8. Channels: how GPs find it</h2>
+<ul>
+<li><b>Platform marketplaces and partner pages</b> (primary): Allvue, iLEVEL and Chronograph each list partner integrations; being the "risk notes from verified closes" partner is the cheapest distribution there is, and the free tier is what gets us listed. Ask: a listing, a joint webinar, a shared design partner.</li>
+<li><b>Fund administrators</b> (the multiplier): one administrator closes books for dozens of GPs. Target the middle-market specialists (Gen II, Standish, Alter Domus's mid-market practice, Juniper Square's fund-admin arm) with the Administrator tier: they keep the client, we remove their close bottleneck. Start with one, as a design partner, in phase 2.</li>
+<li><b>The CFO network</b>: private-fund CFO roundtables and the PEI CFO & COO Forum; a 20-minute talk titled "The number in the borrower's books that warns the LP" with the PIK story. No ads.</li>
+<li><b>Public evidence</b>: the open repo, the evaluation results (72 cases, 59 → 72), the PRISM traces, and a monthly "what the agents got wrong" note. Trust in this market comes from showing the failures, not hiding them.</li>
+<li><b>Nicrron and PRISM</b>: both partners have a reason to feature a customer that proves their tools on real finance work; ask each for a case study and a listing.</li>
+<li><b>LP pull</b> (later): an LP that sees a RAMA note in one GP's reporting asks its other GPs for the same. The destination label stays honest until an LP-side integration exists.</li>
+</ul>
+
+<h2>9. First 30 days: the actual to-do list</h2>
+<table>
+<tr><th style="width:8%">Week</th><th>Action</th><th style="width:30%">Done when</th></tr>
+<tr><td>1</td><td>Size the segment: Form ADV filings (private fund advisers, $300M–$3B RAUM, credit and buyout) and PitchBook firm counts; build the target list of 200 GPs with their platforms</td><td>A spreadsheet with 200 names, platform, AUM, CFO</td></tr>
+<tr><td>1</td><td>Turn the hackathon demo into the free tier's onboarding: upload → close → indicators → cards → export, with the file-in/notes-out path for Allvue, iLEVEL and Chronograph import formats</td><td>A new GP closes a sample month in under a day without a call</td></tr>
+<tr><td>2</td><td>Ten outreach conversations from the hackathon network and the target list; offer the 90-day design partnership (free tier plus weekly call, in exchange for honest usage and the willingness-to-pay conversation)</td><td>5 signed design partners</td></tr>
+<tr><td>2</td><td>Data-rights and security one-pager: what we read, what we write, where it lives, which model provider sees what (Nicrron, zero retention), the licensed-data rule</td><td>Sent with every outreach; no security objection unanswered</td></tr>
+<tr><td>3</td><td>First real company month closed read-only beside the GP's own close; compare; publish the correction rate to the partner</td><td>One tier-C result (real client, outside reviewer, timed)</td></tr>
+<tr><td>3</td><td>The intelligence-layer evaluation: 50+ synthetic company-months with planted conditions; v1 baseline kept</td><td>A before/after that is the intelligence layer's own, not the close's</td></tr>
+<tr><td>4</td><td>Weekly traction report automated from PRISM and the approval records; the first one reviewed with the design partners</td><td>The Monday report exists and changed one decision</td></tr>
+<tr><td>4</td><td>SOC 2 Type I engagement started; the platform connector chosen from the partners' platforms</td><td>Auditor engaged; connector scoped</td></tr>
+</table>
+
+<h2>10. Risks and the honest answers</h2>
+<table>
+<tr><th style="width:30%">Risk</th><th>What we do</th></tr>
+<tr><td>Platforms build this themselves</td><td>They may; our edge is the verified close underneath the note, which a monitoring platform doesn't do. Stay the partner that makes their data trustworthy, and keep the engine open-source-visible so the trust is inspectable.</td></tr>
+<tr><td>"Is this investment advice?"</td><td>Descriptive only, measured against the LP's own thresholds, no transaction-linked fees, a classifier and blocklist on every card, hand-off text for "what should I do?". Securities counsel reviews the card design before the LP Insight tier launches.</td></tr>
+<tr><td>Licensed market data</td><td>Loaded only under the customer's own licence, inside their tenant, never pooled or resold; raw vendor data never goes to a model. Each vendor's AI-processing terms are read before a connector is built.</td></tr>
+<tr><td>A wrong change in a real ledger</td><td>Free tier is read-only on real ledgers: the agents propose; the GP posts. Write access only with written authorisation and the correction-rate gate met.</td></tr>
+<tr><td>Free users who never convert</td><td>Expected. The free tier's value to us is traction data and listings; conversion is designed through the company limit (10) and the fund limit (1), which a growing GP outgrows.</td></tr>
+<tr><td>Model costs on the free tier</td><td>A few dollars per GP per month at today's Nicrron rates; capped by the company limit; the deterministic engine does the expensive work for free.</td></tr>
+<tr><td>Founder capacity</td><td>One person sells and reviews; Claude builds. The first hire comes after the first ten paying GPs, from revenue.</td></tr>
+</table>
+
+<h2>11. What we will not do</h2>
+<ul>
+<li>Charge for safety: citations, guardrails, audit trail and thresholds stay free in every tier.</li>
+<li>Claim accuracy we haven't measured: every published rate is tier B or C (blind or real), never a fixture with its answers opened.</li>
+<li>Build a second ledger, resell market data, or write numbers into a customer's platform.</li>
+<li>Take write access to a real ledger without written authorisation.</li>
+<li>Say "Chronograph integration" until one exists; the demonstration label stays until then.</li>
+</ul>
+
+<div class="foot">RAMA provides risk analytics, not investment advice. Prices and thresholds in this plan are proposals to be set from the design-partner conversations. Market figures are sourced in the judges' script; the segment count is to be measured from Form ADV and PitchBook in week 1.</div>
+</body></html>
