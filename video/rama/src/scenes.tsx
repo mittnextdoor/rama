@@ -17,6 +17,8 @@ export const PRISM_FROM = Number((media as any).prismFrom || 0);   // frames of 
 export const PRISM_SECOND = Number((media as any).prismSecond || 1500);  // frames from the first window to the guardrail trace
 export const APP = { accrued: "$5.75M", cash: "$4.00M", pik: "$1.75M", fee: "$14,800", r1: "17.6%", r1Limit: "5%", r5: "98.5%", r5Origination: "65%", lpL2: "$75.4M", nav: "$1,698.5M" };
 
+/** The scene's length in frames (its Sequence), so internal beats scale when the film is cut shorter. */
+const useLen = () => useVideoConfig().durationInFrames;
 export type SceneProps = { voiceSrc?: string | null; captionText?: string; cut?: boolean };
 export const OVERLAP = 18;                                   // frames of cross-dissolve between scenes (0.6 s)
 /** A scene: fades in over the previous one, its narration starts after the dissolve and fades at the scene's end. */
@@ -74,17 +76,17 @@ export const World: React.FC<SceneProps> = (props) => {
 };
 
 // 3 — The Books Arrive
-export const Books: React.FC<SceneProps> = (props) => (
+export const Books: React.FC<SceneProps> = (props) => { const L = useLen(), a = Math.round(L * 0.4); return (
   <Wrap scene={3} {...props}>
-    <Sequence from={0} durationInFrames={210}><Cinematic {...shot("documents")} label="documents" seconds={7} /></Sequence>
-    <Sequence from={210}><Capture src={cap("CAPTURE_03")} id="CAPTURE_03" inset={40} />
+    <Sequence from={0} durationInFrames={a}><Cinematic {...shot("documents")} label="documents" seconds={7} /></Sequence>
+    <Sequence from={a}><Capture src={cap("CAPTURE_03")} id="CAPTURE_03" inset={40} />
       <Chip x={120} y={120} at={20} tone="green" small>Bank statement · Operating · Sept 2026 ✓</Chip>
       <Chip x={120} y={180} at={40} tone="green" small>Bank statement · Debt service reserve · Sept 2026 ✓</Chip>
       <Chip x={120} y={240} at={60} tone="green" small>Lender statement · Loan L2 · Sept 2026 ✓</Chip>
       <Chip x={120} y={300} at={80} tone="green" small>PIK election notice · Loan L2 · 2026-09-15 ✓</Chip>
     </Sequence>
   </Wrap>
-);
+); };
 
 // 4 — The Close
 export const Close: React.FC<SceneProps> = (props) => (
@@ -166,12 +168,13 @@ export const Cards: React.FC<SceneProps> = (props) => {
 
 // 9 — The Guardrail
 export const Guardrail: React.FC<SceneProps> = (props) => {
-  const frame = useCurrentFrame();
+  const frame = useCurrentFrame(), L = useLen();
   const typed = "Should Hudson sell its stake in the fund?";
   const draft = "Hudson should reduce its commitment and rebalance into safer funds.";
-  const n = Math.min(typed.length, Math.floor(frame / 2.2));
-  const dn = Math.max(0, Math.min(draft.length, Math.floor((frame - 110) / 1.6)));
-  const struck = frame > 230;
+  const t1 = L * 0.30, t2 = L * 0.38, t3 = L * 0.62, t4 = L * 0.72;      // typed by t1; draft from t2 to t3; struck at t3; hand-off at t4
+  const n = Math.min(typed.length, Math.floor((frame / t1) * typed.length));
+  const dn = Math.max(0, Math.min(draft.length, Math.floor(((frame - t2) / (t3 - t2)) * draft.length)));
+  const struck = frame > t3;
   return (
     <Wrap scene={9} {...props}>
       {cap("CAPTURE_09") ? <Capture src={cap("CAPTURE_09")} id="CAPTURE_09" /> : <AbsoluteFill style={{ background: "#070a18" }} />}
@@ -180,9 +183,9 @@ export const Guardrail: React.FC<SceneProps> = (props) => {
         <div style={{ fontSize: 30, marginTop: 10 }}>{typed.slice(0, n)}<span style={{ opacity: frame % 20 < 10 ? 1 : 0 }}>|</span></div>
         <div style={{ fontSize: 26, marginTop: 24, color: "#ffb0a0", textDecoration: struck ? "line-through" : "none", opacity: struck ? 0.6 : 1 }}>{draft.slice(0, dn)}</div>
         {struck && <div style={{ marginTop: 18, display: "inline-block", background: "#ff4d4d", color: "#1a0000", fontWeight: 800, padding: "8px 14px", borderRadius: 10, fontSize: 20 }}>Blocked: prescriptive language</div>}
-        {frame > 270 && <div style={{ marginTop: 20, fontSize: 24, color: C.text, opacity: fadeIn(frame, 270) }}>RAMA provides risk analysis only. Decisions sit with Hudson and its advisers. For questions about the fund, contact the GP's investor relations team.</div>}
+        {frame > t4 && <div style={{ marginTop: 20, fontSize: 24, color: C.text, opacity: fadeIn(frame, t4) }}>RAMA provides risk analysis only. Decisions sit with Hudson and its advisers. For questions about the fund, contact the GP's investor relations team.</div>}
       </div>
-      <Footer at={280}>{DISCLOSURE}</Footer>
+      <Footer at={t4}>{DISCLOSURE}</Footer>
     </Wrap>
   );
 };
@@ -192,7 +195,7 @@ export const Release: React.FC<SceneProps> = (props) => {
   const a = props.cut ? 75 : 270, f = props.cut ? 75 : 180;      // approval (before the in-app line fires), the fiery line, the destination
   return (
     <Wrap scene={10} {...props}>
-      <Sequence from={0} durationInFrames={a}><Capture src={cap("CAPTURE_10a")} id="CAPTURE_10a" from={props.cut ? 150 : 0} /><Chip x={1200} y={120} at={props.cut ? 20 : 200} tone="amber" small>Held — confirm with deal team · stays behind</Chip></Sequence>
+      <Sequence from={0} durationInFrames={a}><Capture src={cap("CAPTURE_10a")} id="CAPTURE_10a" from={props.cut ? 150 : 0} /><Chip x={1200} y={120} at={Math.round(a * 0.6)} tone="amber" small>Held — confirm with deal team · stays behind</Chip></Sequence>
       <Sequence from={a} durationInFrames={f}><Cinematic {...shot("fire")} label="fire" seconds={6} /><AmberLine d="M -50 700 C 500 700, 900 300, 2000 380" at={0} len={60} width={6} flame /></Sequence>
       <Sequence from={a + f}><Capture src={cap("CAPTURE_10b")} id="CAPTURE_10b" /><Banner at={5}>{DEST_LABEL}</Banner><Chip x={1300} y={160} at={40} tone="green" small>Approved · reviewer · 3 of 4 cards travelled</Chip></Sequence>
     </Wrap>
@@ -201,23 +204,23 @@ export const Release: React.FC<SceneProps> = (props) => {
 
 // 11 — Under the hood: two windows of the PRISM recording (the traces list with the Nicrron-routed model, then the
 // trace where the guardrail blocked the advisory sentence); the sign-in at the start of the recording is never shown
-export const Hood: React.FC<SceneProps> = (props) => (
+export const Hood: React.FC<SceneProps> = (props) => { const L = useLen(), h = Math.round(L * 0.5); return (
   <Wrap scene={11} {...props}>
-    <Sequence from={0} durationInFrames={330}><Capture src={cap("CAPTURE_11")} id="CAPTURE_11 · PRISM dashboard (record after sign-in)" from={PRISM_FROM} />
+    <Sequence from={0} durationInFrames={h}><Capture src={cap("CAPTURE_11")} id="CAPTURE_11 · PRISM dashboard (record after sign-in)" from={PRISM_FROM} />
       <div style={{ position: "absolute", left: 0, top: 1016, width: 222, height: 64, background: "#f5f7fb" }} />
       <Chip x={1180} y={100} at={30} tone="amber" small>Session helios-2026-09 · agent rama</Chip>
       <Chip x={1180} y={160} at={120} tone="amber" small>Model calls · openai-agents:generation:anthropic/claude-haiku-5-5 · via Nicrron</Chip>
       <Chip x={1180} y={220} at={210} tone="amber" small>Close tools · rules · guardrails as function spans</Chip></Sequence>
-    <Sequence from={330}><Capture src={cap("CAPTURE_11")} id="CAPTURE_11" from={PRISM_FROM + PRISM_SECOND} />
+    <Sequence from={h}><Capture src={cap("CAPTURE_11")} id="CAPTURE_11" from={PRISM_FROM + PRISM_SECOND} />
       <div style={{ position: "absolute", left: 0, top: 1016, width: 222, height: 64, background: "#f5f7fb" }} />
       <Chip x={1180} y={100} at={20} tone="red" small>Guardrail: blocked · "descriptive": false</Chip>
       <Chip x={1180} y={160} at={110} tone="amber" small>The reason, recorded: it recommends reducing and rebalancing</Chip></Sequence>
   </Wrap>
-);
+); };
 
 // 12 — Trace it back
 export const Trace: React.FC<SceneProps> = (props) => {
-  const t = props.cut ? 60 : 300;                                // the trace back, then the end card
+  const L = useLen(), t = Math.round(L * (props.cut ? 0.35 : 0.55));   // the trace back, then the end card
   return (
     <Wrap scene={12} {...props}>
       <Sequence from={0} durationInFrames={t}><Capture src={cap("CAPTURE_12")} id="CAPTURE_12" from={props.cut ? 240 : 0} /></Sequence>

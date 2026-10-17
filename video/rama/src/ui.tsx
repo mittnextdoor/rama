@@ -35,7 +35,7 @@ export const Narration: React.FC<{ src?: string | null }> = ({ src }) => (src ? 
 export const NarrationFaded: React.FC<{ src?: string | null; end: number }> = ({ src, end }) => {
   const frame = useCurrentFrame();
   if (!src) return null;
-  const vol = interpolate(frame, [Math.max(0, end - 30), Math.max(1, end - 2)], [1, 0], { extrapolateLeft: "clamp", extrapolateRight: "clamp" });
+  const vol = interpolate(frame, [Math.max(0, end - 8), Math.max(1, end - 1)], [1, 0], { extrapolateLeft: "clamp", extrapolateRight: "clamp" });
   return <Audio src={staticFile(src)} volume={vol} />;
 };
 
