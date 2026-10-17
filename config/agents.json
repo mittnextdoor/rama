@@ -1,0 +1,182 @@
+{
+  "_about": "Reasoning agents (docs/83 §4). No secrets here: each agent names the environment variable (or macOS Keychain item, service nhb-product) that holds its API key. Every agent is off until enabled and given a key. Prices are left null on purpose: set them from your provider's current price list to get cost estimates and cost limits; token limits work without them. Override this file with NHB_AGENT_CONFIG=/path/to/agents.json. temperature is sent only to models that take it (Claude Haiku 4.5 and the 4.6/4.5 line); effort only to models that take it (not Haiku 4.5): product/reasoning/providers.py.",
+  "defaults": {
+    "enabled": false,
+    "provider": "anthropic",
+    "credential_env": "NHB_ANTHROPIC_API_KEY",
+    "max_input_tokens": 6000,
+    "max_output_tokens": 800,
+    "per_task_token_budget": 12000,
+    "monthly_token_budget": 2000000,
+    "timeout_seconds": 45,
+    "max_retries": 2,
+    "temperature": 0,
+    "effort": "low",
+    "confidence_threshold": 0.8,
+    "batch_size": 10,
+    "data_kinds": [
+      "demo",
+      "blind"
+    ],
+    "prices_per_million_tokens": {}
+  },
+  "agents": {
+    "classifier": {
+      "purpose": "Suggest where a bank or card line goes when no record, rule or the chart explains it.",
+      "model": "claude-haiku-4-5-20251001",
+      "escalation_model": "claude-sonnet-5-5",
+      "credential_env": "NHB_AGENT_CLASSIFIER_API_KEY",
+      "context_tools": [
+        "held_line",
+        "chart",
+        "similar_history",
+        "client_rules"
+      ],
+      "may": [
+        "suggest_account"
+      ],
+      "confidence_threshold": 0.85,
+      "enabled": true,
+      "max_input_tokens": 14000,
+      "per_task_token_budget": 16000,
+      "data_kinds": [
+        "demo",
+        "blind",
+        "real"
+      ]
+    },
+    "reviewer": {
+      "purpose": "Look at the month's figures the deterministic checks flagged as unusual and say what a reviewer should ask.",
+      "model": "claude-sonnet-5-5",
+      "escalation_model": null,
+      "credential_env": "NHB_AGENT_REVIEWER_API_KEY",
+      "context_tools": [
+        "flagged_variances",
+        "open_findings"
+      ],
+      "may": [
+        "add_observation"
+      ],
+      "max_output_tokens": 1200,
+      "enabled": true
+    },
+    "client_questions": {
+      "purpose": "Draft plain-language questions to the client from the month's open requests.",
+      "model": "claude-haiku-4-5-20251001",
+      "escalation_model": null,
+      "credential_env": "NHB_AGENT_CLIENT_QUESTIONS_API_KEY",
+      "context_tools": [
+        "open_requests"
+      ],
+      "may": [
+        "draft_message"
+      ],
+      "enabled": true
+    },
+    "layout_mapper": {
+      "purpose": "Propose how to read a file's table that no built-in, learned or client layout reads (what the rows are, which column is which field, or what the file is). Checked against every row; a person approves; the firm learns it, so the same columns are never sent again (docs/92 §4, 4.3).",
+      "model": "claude-haiku-4-5-20251001",
+      "escalation_model": "claude-sonnet-5-5",
+      "credential_env": "NHB_AGENT_LAYOUT_MAPPER_API_KEY",
+      "context_tools": [
+        "file_header_and_sample",
+        "record_types"
+      ],
+      "may": [
+        "propose_mapping",
+        "propose_file_role"
+      ],
+      "wired": true,
+      "enabled": true,
+      "data_kinds": [
+        "demo",
+        "blind",
+        "real"
+      ],
+      "max_input_tokens": 12000,
+      "max_output_tokens": 1200,
+      "per_task_token_budget": 16000,
+      "monthly_token_budget": 3000000,
+      "confidence_threshold": 0.8
+    },
+    "assistant": {
+      "purpose": "Answer questions about a client's month from its records, and prepare supported changes for a person to confirm (docs/85 §G).",
+      "model": "claude-sonnet-5-5",
+      "escalation_model": null,
+      "credential_env": "NHB_AGENT_ASSISTANT_API_KEY",
+      "context_tools": [
+        "month_status",
+        "list_findings",
+        "account_activity",
+        "account_change",
+        "find_transactions",
+        "list_requests"
+      ],
+      "may": [
+        "propose_recategorization",
+        "draft_client_question",
+        "update_task",
+        "rerun_close",
+        "prepare_for_approval"
+      ],
+      "max_input_tokens": 24000,
+      "max_output_tokens": 1500,
+      "per_task_token_budget": 60000,
+      "max_steps": 6,
+      "timeout_seconds": 60,
+      "effort": "medium",
+      "enabled": true
+    },
+    "onboarding": {
+      "purpose": "Read the client's handover documents (brief, engagement letter, policy, emails) for the accounting basis, entity type and fiscal year-end when the onboarding agent's patterns find nothing; each quoted word for word, confirmed by a person (docs/97).",
+      "model": "claude-haiku-4-5-20251001",
+      "escalation_model": "claude-sonnet-5-5",
+      "credential_env": "NHB_AGENT_ONBOARDING_API_KEY",
+      "context_tools": [
+        "document_text"
+      ],
+      "may": [
+        "propose_fact"
+      ],
+      "wired": true,
+      "enabled": true,
+      "max_input_tokens": 6000,
+      "max_output_tokens": 600,
+      "per_task_token_budget": 8000,
+      "monthly_token_budget": 2000000,
+      "data_kinds": [
+        "demo",
+        "blind",
+        "real"
+      ],
+      "confidence_threshold": 0.8
+    },
+    "instruction": {
+      "purpose": "Carry out a person's typed instruction about items in the month's close: propose specific QuickBooks changes (record, move, split, journal, delete), questions to the client or notes, which code checks and the person confirms.",
+      "model": "claude-sonnet-5-5",
+      "credential_env": "NHB_AGENT_INSTRUCTION_API_KEY",
+      "context_tools": [
+        "items",
+        "chart",
+        "owner_accounts",
+        "client_rules",
+        "history",
+        "firm_rules",
+        "guidance"
+      ],
+      "may": [
+        "propose_changes"
+      ],
+      "enabled": true,
+      "data_kinds": [
+        "demo",
+        "blind",
+        "real"
+      ],
+      "max_input_tokens": 30000,
+      "max_output_tokens": 4000,
+      "per_task_token_budget": 40000,
+      "timeout_seconds": 90
+    }
+  }
+}

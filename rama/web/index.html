@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>RAMA · From books to foresight</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+<div class="busy-bar" id="busybar"></div>
+<div class="app">
+  <aside class="sidenav glass">
+    <div class="brand"><span class="mark">R</span> RAMA <small>· FORESIGHT</small></div>
+    <div class="divider"></div>
+    <nav class="nav" id="nav">
+      <a href="#dashboard" data-r="dashboard"><span class="ib" data-i="home"></span>Dashboard</a>
+      <a href="#close" data-r="close"><span class="ib" data-i="ledger"></span>Close<span class="tag" id="tag-close"></span></a>
+      <a href="#intelligence" data-r="intelligence"><span class="ib" data-i="pulse"></span>Intelligence<span class="tag" id="tag-intel"></span></a>
+      <a href="#review" data-r="review"><span class="ib" data-i="check"></span>Review &amp; release<span class="tag" id="tag-review"></span></a>
+      <div class="nav-h">Destination</div>
+      <a href="#chronograph" data-r="chronograph" id="nav-chrono"><span class="ib" data-i="share"></span>Chronograph<span class="tag">demo</span></a>
+      <div class="nav-h">Evidence</div>
+      <a href="#execution" data-r="execution"><span class="ib" data-i="bolt"></span>Execution · PRISM</a>
+    </nav>
+    <div class="help">
+      <div class="q">?</div>
+      <b>Execution evidence</b>
+      <span id="help-line">PRISM via the Agent Frameworks card · models via Nicrron</span>
+      <button class="btn-doc" onclick="location.hash='#execution'">OPEN TRACES</button>
+    </div>
+  </aside>
+  <main class="main">
+    <header class="topbar">
+      <div>
+        <div class="crumbs">Pages / <b id="crumb">Dashboard</b></div>
+        <h1 id="title">Dashboard</h1>
+      </div>
+      <div class="tools">
+        <div class="search"><span data-i="search"></span> Helios Compute · Sep 2026</div>
+        <span class="pill" id="prism-pill"><span class="dot"></span>PRISM</span>
+        <span class="pill"><span data-i="user"></span>Fund reviewer</span>
+        <button class="icon-btn" title="Reset the demo scenario" onclick="RAMA.reset()"><span data-i="gear"></span></button>
+        <button class="icon-btn" title="Activity" onclick="location.hash='#execution'"><span data-i="bell"></span></button>
+      </div>
+    </header>
+    <section id="view"></section>
+  </main>
+</div>
+<div class="drawer-bg" id="drawer-bg" onclick="RAMA.closeDrawer()"></div>
+<div class="drawer glass" id="drawer"></div>
+<svg id="fire" class="hidden"><defs>
+  <linearGradient id="fireGrad" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#ff3d00"/><stop offset=".5" stop-color="#ff8a00"/><stop offset="1" stop-color="#ffd166"/></linearGradient>
+  <filter id="glow"><feGaussianBlur stdDeviation="3" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+  <filter id="blur"><feGaussianBlur stdDeviation="6"/></filter>
+</defs></svg>
+<div class="toast" id="toast"></div>
+<script src="/vendor/apexcharts.min.js"></script>
+<script src="/app.js"></script>
+</body>
+</html>

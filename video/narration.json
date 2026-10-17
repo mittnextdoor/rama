@@ -1,0 +1,107 @@
+{
+ "voice": {
+  "name": "Arthur",
+  "voice_id": "30fc8796-ceb6-4a66-b3a7-4a145ef7f346",
+  "voice_type": "preset",
+  "model": "elevenlabs_v4",
+  "stability": 0.6,
+  "similarity_boost": 0.8
+ },
+ "scenes": [
+  {
+   "scene": 0,
+   "start": 0,
+   "text": "Every risk an investor carries starts as a line in someone's books."
+  },
+  {
+   "scene": 1,
+   "start": 10,
+   "text": "RAMA follows that line. From the books, to the market, to the investor."
+  },
+  {
+   "scene": 2,
+   "start": 18,
+   "text": "Private credit is financing the AI build-out, and defaults just hit a record. Meet Hudson State Teachers' Pension, invested in a fund lending to AI infrastructure. One of its borrowers is Helios Compute, a GPU cloud. Helios is synthetic; we use CoreWeave's public data only as market context."
+  },
+  {
+   "scene": 3,
+   "start": 38,
+   "text": "It starts with Helios's month: the ledger, the bank statements, the loan notices. RAMA's agents take it from here."
+  },
+  {
+   "scene": 4,
+   "start": 55,
+   "text": "The close runs. One number doesn't tie: the ledger says September's interest was paid in cash, but the bank shows less. The agent finds why. The borrower paid part of it in kind, adding to the loan instead of paying cash. Where there's no evidence, RAMA leaves the exception in plain sight."
+  },
+  {
+   "scene": 5,
+   "start": 80,
+   "text": "Every number carries its evidence. Click it, and you're looking at the bank line it came from."
+  },
+  {
+   "scene": 6,
+   "start": 95,
+   "text": "Books tell you what happened. The market tells you what's changing. RAMA brings in dated evidence: the borrower's public peer is carrying more than eight times its earnings in debt; a major tenant was downgraded and just invoked force majeure; and the GPUs backing these loans now rent for a fraction of what they did."
+  },
+  {
+   "scene": 7,
+   "start": 115,
+   "text": "Then fixed rules do the math. No AI arithmetic. Each threshold comes from Hudson's own policy, the loan documents, or a labeled default. Where data is missing, RAMA says so instead of guessing. Helios's signals roll up into the fund Hudson actually owns."
+  },
+  {
+   "scene": 8,
+   "start": 135,
+   "text": "The model's only job is to put the rule's result into words. Open any card and you see exactly what was calculated, the threshold it crossed, who set it, and where the data came from, with dates."
+  },
+  {
+   "scene": 9,
+   "start": 160,
+   "text": "And it never crosses the line into advice. Recommendations are blocked before anyone sees them."
+  },
+  {
+   "scene": 10,
+   "start": 172,
+   "text": "Nothing reaches Hudson until a person approves it. Approve the package, and only those exact cards travel to Hudson's reporting view. This destination is a demonstration; there's no live connection. The card that was held, stays held."
+  },
+  {
+   "scene": 11,
+   "start": 200,
+   "text": "Every step is traced: the close, the rules, every model call through Nicrron, and every guardrail decision, in one session you can inspect."
+  },
+  {
+   "scene": 12,
+   "start": 222,
+   "text": "Any insight, all the way back to the bank line it came from. From reconciled books to reviewed intelligence. RAMA makes the path visible."
+  }
+ ],
+ "cut_scenes": [
+  {
+   "scene": 0,
+   "text": "Every risk starts as a line in someone's books. RAMA follows it."
+  },
+  {
+   "scene": 4,
+   "text": "RAMA closes the borrower's month and explains every difference, with evidence."
+  },
+  {
+   "scene": 5,
+   "text": "Click any number; see its source."
+  },
+  {
+   "scene": 7,
+   "text": "Dated market evidence meets fixed rules. Missing data is flagged, never guessed."
+  },
+  {
+   "scene": 8,
+   "text": "The model only explains what the rules calculated."
+  },
+  {
+   "scene": 10,
+   "text": "Nothing reaches the investor until a person approves it."
+  },
+  {
+   "scene": 12,
+   "text": "From reconciled books to reviewed intelligence. RAMA."
+  }
+ ]
+}
